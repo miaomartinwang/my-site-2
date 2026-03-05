@@ -50,6 +50,7 @@
 			<a href="/about">About</a>
 			<a href="/projects">Projects</a>
 			<a href="/weather">Weather</a>
+			<a href="/arts">Arts</a>
 			<a href="/films">Films</a>
 		</div>
 	</div>
