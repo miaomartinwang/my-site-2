@@ -22,7 +22,7 @@
 
     async function searchFilm() {
         if (!filmTitle) return;
-        const filmUrl = `http://www.omdbapi.com/?t=${encodeURIComponent(filmTitle)}&apikey=b30a3fa2`;
+        const filmUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(filmTitle)}&apikey=b30a3fa2`;
         const filmRes = await fetch(filmUrl);
         const filmData = await filmRes.json()
 
