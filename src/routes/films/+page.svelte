@@ -22,7 +22,7 @@
 
     async function searchFilm() {
         if (!filmTitle) return;
-        const filmUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(filmTitle)}&apikey=b30a3fa2`;
+        const filmUrl = `https://www.omdbapi.com/?t=${filmTitle}&apikey=b30a3fa2`;
         const filmRes = await fetch(filmUrl);
         const filmData = await filmRes.json()
 
@@ -108,11 +108,11 @@
             
             <Separator />
 
-            {#each filmList as filmItem, i}
+            {#each filmList as filmItem, i(filmItem.Title)}
                 <Card.Root class="overflow-hidden transition-all hover:shadow-md">
                     <div class="flex flex-col md:flex-row">
                         <img 
-                            src={filmItem.Poster !== 'N/A' ? filmItem.Poster : 'https://via.placeholder.com'} 
+                            src={filmItem.Poster} 
                             alt={filmItem.Title}
                             class="w-full md:w-48 h-72 md:h-auto object-cover"
                         />
@@ -134,8 +134,12 @@
                             </div>
                             
                             <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-md text-xs text-muted-foreground">
-                                <strong>Cast:</strong> {filmItem.Actors}
-                                <strong>Plot:</strong> {filmItem.Plot}
+                                <div>
+                                    <strong>Cast:</strong> {filmItem.Actors}
+                                </div>
+                                <div>
+                                    <strong>Plot:</strong> {filmItem.Plot}
+                                </div>
                             </div>
                         </div>
                     </div>
