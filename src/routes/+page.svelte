@@ -1,204 +1,98 @@
-<!--
-  +page.svelte — Your HOME PAGE (the root route: /)
-  
-  This is what visitors see first. It should introduce YOU
-  and give people a reason to explore the rest of your site.
+<script lang="ts">
+  let newsMore = false;
 
-  KEY SVELTE 5 CONCEPTS USED HERE:
-  - $state()  → creates a reactive variable (updates the page when it changes)
-  - {variable} → displays a variable's value in HTML (like f-strings in Python)
-  - onclick    → runs a function when something is clicked
-
-  CUSTOMIZE: Replace ALL the placeholder text with your own content!
--->
-<script>
-  // ============================================
-  // REACTIVE STATE — $state() makes variables "live"
-  // ============================================
-  // When these change, the HTML updates AUTOMATICALLY.
-  // No document.getElementById needed!
-  // Python comparison: imagine if changing a variable
-  // instantly updated every print() that used it.
-
-  let greeting = $state("Welcome to my site!");
-  let showBio = $state(false);
-
-  // A regular variable (not reactive — fine for static data)
-  const name = "Your Name Here";
-  const tagline = "Student · Developer · [Your Interest]";
-
-  // ============================================
-  // FUNCTIONS — same as JavaScript, but Svelte
-  // re-renders automatically when $state changes
-  // ============================================
-  function toggleBio() {
-    // This ONE LINE updates the variable AND the page.
-    // In vanilla JS you'd also need:
-    //   document.getElementById('bio').style.display = ...
-    //   document.getElementById('btn').textContent = ...
-    // Svelte handles all of that for you.
-    showBio = !showBio;
+  function showMoreNews() {
+    newsMore = !newsMore;
   }
 </script>
 
-<div class="max-w-2xl mx-auto p-8">
-  <h1 class="text-4xl font-bold mb-4">Name</h1>
-  <p class="text-lg text-gray-600 mb-6">My short introduction. blablabla.</p>
-  <a href="/weather" class="text-teal-600 underline text-lg">View Weather Dashbord &rarr;</a>
-</div>
+<div class="min-h-screen bg-background text-foreground antialiased">
+  <div class="mx-auto max-w-4xl px-6 py-12 md:px-10 lg:py-16">
 
+    <section class="mb-20">
+      <h1 class="mb-8 text-4xl font-bold tracking-tight md:text-5xl">About</h1>
 
-<section class="hero">
-  <!-- {variable} inserts the value — like Python's f"{variable}" -->
-  <h1>{greeting}</h1>
-  <p class="name">{name}</p>
-  <p class="tagline">{tagline}</p>
+      <div class="prose prose-neutral max-w-none space-y-6 text-lg leading-relaxed">
+        <p>
+          I am a Ph.D. student in Cinema and Media Studies at the University of Chicago.
+          My work explores media technologies — from mid-20th-century film projectors to contemporary
+          cryptographic systems and CAPTCHAs.
+        </p>
 
-  <!--
-    BUTTON with onclick
-    When clicked, toggleBio() runs → showBio changes →
-    the {#if} block below updates automatically
-  -->
-  <button onclick={toggleBio}>
-    {showBio ? "Hide Bio" : "Read More About Me"}
-  </button>
-</section>
+        <p>
+          I generally adopt a <strong>post-hermeneutic</strong> approach, asking how the material
+          specificities of media infrastructures quietly structure sociopolitical relations,
+          power distributions, and possibilities of perception.
+        </p>
 
-<!--
-  CONDITIONAL RENDERING: {#if ...}
-  This block only shows when showBio is true.
-  Python comparison: like an if statement, but for HTML.
-  
-  In vanilla JS you'd use:
-    element.style.display = showBio ? 'block' : 'none';
-  In Svelte, the HTML literally appears/disappears.
--->
-{#if showBio}
-  <section class="bio-section">
-    <h2>A Little About Me</h2>
-    <p>
-      <!-- CUSTOMIZE: Write 2-3 sentences about yourself -->
-      I'm a student at the University of Chicago studying [your field].
-      I'm interested in [your interests] and this site showcases
-      my work in web development.
-    </p>
-  </section>
-{/if}
+        <p>
+          Current / ongoing projects include:
+        </p>
 
-<section class="quick-links">
-  <h2>Explore</h2>
-  <div class="card-row">
-    <!--
-      These are simple "cards" linking to your other pages.
-      Each one is just an <a> tag styled as a box.
-      Add more cards as you add more pages to your site!
-    -->
-    <a href="/about" class="card">
-      <h3>About Me</h3>
-      <p>My background, interests, and goals.</p>
-    </a>
-    <a href="/projects" class="card">
-      <h3>Projects</h3>
-      <p>Work I've done in this course and beyond.</p>
-    </a>
+        <ul class="ml-6 list-disc space-y-2 marker:text-primary">
+          <li>A media-archaeological history of CAPTCHAs as sites of human–machine boundary work</li>
+          <li>The political ecology and cultural life of Chinese programming languages</li>
+          <li>Knowledge management platforms (Notion, Obsidian, Zotero, etc.) and new forms of cognitive alienation</li>
+          <li>Preparing for qualifying exams in politics of computing, materialisms, and media theory</li>
+        </ul>
+
+        <p class="mt-8">
+          Before joining UChicago, I received an M.A. from Columbia University and a B.A. from Tsinghua University.
+          My most recent CV is available
+          <a href="/cv" class="text-primary hover:underline font-medium">here</a>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h1 class="mb-8 text-4xl font-bold tracking-tight md:text-5xl">News</h1>
+
+      <div class="space-y-5">
+        <article class="group relative rounded-lg border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md">
+          <time class="mb-1 block text-sm font-medium text-muted-foreground">March 29, 2026</time>
+          <p class="text-lg font-semibold leading-snug">
+            Presentation at SCMS 2026
+          </p>
+          <p class="mt-1.5 text-muted-foreground">
+            I will present my paper <em>“Humanness in Flux: CAPTCHAs, the War on Bots, and Digital Capitalism”</em> in the session
+            <strong>“From Grids to Platforms”</strong> (N03) • 9:00–10:45 am • Chicago
+          </p>
+          <p class="mt-1 text-sm text-muted-foreground/80">Location: tbd</p>
+        </article>
+
+        <article class="group relative rounded-lg border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md">
+          <time class="mb-1 block text-sm font-medium text-muted-foreground">December 10, 2025</time>
+          <p class="text-lg font-semibold leading-snug">
+            Student Essay Award
+          </p>
+          <p class="mt-1.5 text-muted-foreground">
+            My article <em>“Formatting Chinese Cinema: Small-Gauge Film Projectors in the Socialist Era”</em> received the
+            <strong>Student Essay Award</strong> from the Nontheatrical Film & Media Scholarly Interest Group
+            (Society for Cinema and Media Studies) and The Association of Moving Image Archivists.
+          </p>
+          <p class="mt-2 text-sm italic text-muted-foreground/90">
+            Forthcoming in <em>The Moving Image</em>.
+          </p>
+        </article>
+
+        {#if newsMore}
+          <article class="rounded-lg border border-border bg-card p-5 opacity-75">
+            <time class="mb-1 block text-sm text-muted-foreground">…</time>
+            <p class="text-muted-foreground">More news items will appear here when available.</p>
+          </article>
+        {/if}
+      </div>
+
+      <div class="mt-8 text-right">
+        <button
+          type="button"
+          on:click={showMoreNews}
+          class="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {newsMore ? 'Collapse −' : 'Expand +' }
+        </button>
+      </div>
+    </section>
+
   </div>
-</section>
-
-<style>
-  /* ============================
-     HOME PAGE STYLES
-     
-     All styles here are SCOPED to this page only.
-     They won't affect other pages. This is a Svelte
-     feature — no class name collisions!
-     ============================ */
-
-  .hero {
-    text-align: center;
-    padding: 3rem 0 2rem;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .name {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0.25rem 0;
-  }
-
-  .tagline {
-    color: #666;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-
-  button {
-    background-color: #8b0000;
-    color: white;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  button:hover {
-    background-color: #6b0000;
-  }
-
-  /* Bio section — appears when showBio is true */
-  .bio-section {
-    background-color: #f5f0eb;
-    padding: 1.5rem 2rem;
-    border-radius: 6px;
-    margin: 1.5rem 0;
-    border-left: 4px solid #8b0000;
-  }
-
-  .bio-section h2 {
-    margin-top: 0;
-  }
-
-  /* Card links */
-  .quick-links {
-    margin-top: 2.5rem;
-  }
-
-  .card-row {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    flex: 1;
-    min-width: 200px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.2s;
-  }
-
-  .card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    text-decoration: none;
-  }
-
-  .card h3 {
-    margin: 0 0 0.5rem;
-    color: #8b0000;
-  }
-
-  .card p {
-    margin: 0;
-    color: #555;
-    font-size: 0.95rem;
-  }
-</style>
+</div>

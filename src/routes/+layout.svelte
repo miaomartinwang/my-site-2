@@ -3,82 +3,44 @@
 
 	import './layout.css';
 
-	// $props() is how Svelte 5 receives data passed to a component.
-	// SvelteKit automatically passes "children" — the current page's content.
-	// Python comparison: like **kwargs in a function
 	let { children } = $props();
 </script>
 
-<!--
-  +layout.svelte — The "wrapper" around EVERY page on your site.
-  
-  This file runs on ALL routes. It's where you put:
-  - Navigation bar (so it appears on every page)
-  - Footer (same reason)
-  - Global styles
-
-  KEY SVELTE 5 CONCEPTS USED HERE:
-  - $props()  → receives "children" from SvelteKit (the page content)
-  - {@render children()}  → displays the current page INSIDE this layout
-
-  Think of it like a picture frame: the layout is the frame,
-  and each +page.svelte is a different picture you swap in.
--->
-<!-- Navigation bar — appears on EVERY page -->
 
 <nav>
 	<div class="nav-inner">
-		<!-- 
-      CUSTOMIZE THIS: Replace "My Name" with YOUR name.
-      This is your site's "brand" — it shows on every page.
-    -->
-		<a href="/" class="site-title">My Name</a>
+
+		<a href="/" class="site-title">Miao Wang</a>
 
 		<div class="nav-links">
-			<!--
-        Each <a> link points to a ROUTE (a folder in src/routes/).
-        href="/"          → src/routes/+page.svelte  (home)
-        href="/about"     → src/routes/about/+page.svelte
-        href="/projects"  → src/routes/projects/+page.svelte
-        
-        To add a new page: 
-        1. Create a new folder in src/routes/
-        2. Add a +page.svelte file inside it
-        3. Add a link here
-      -->
+
 			<a href="/">Home</a>
-			<a href="/about">About</a>
-			<a href="/projects">Projects</a>
-			<a href="/weather">Weather</a>
-			<a href="/arts">Arts</a>
-			<a href="/films">Films</a>
+			<a href="/cv">CV</a>
+			<a href="/writings">Writings</a>
+			<a href="/films">FilmStack</a>
 		</div>
 	</div>
 </nav>
 
-<!-- 
-  {@render children()} displays whichever +page.svelte 
-  matches the current URL. This is the "picture" in the "frame."
--->
 <main>{@render children()}</main>
-<footer><p>© 2026 My Name · Built with SvelteKit</p></footer>
+<footer><p>© 2026 Miao Wang · Built with SvelteKit</p></footer>
 
 <style>
 	:global(body) {
 		margin: 0;
 		font-family: Georgia, 'Times New Roman', serif;
 		color: #1a1a1a;
-		background-color: #fafafa;
+		background-color: #ffffff;
 		line-height: 1.6;
 	}
 
 	:global(a) {
-		color: #8b0000;
-		text-decoration: none;
+		color: #cf1a09;
+		text-decoration: underline;
 	}
 
 	:global(a:hover) {
-		text-decoration: underline;
+		text-decoration: none;
 	}
 
 	nav {
